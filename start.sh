@@ -49,9 +49,12 @@ sleep 5
 # Prompt the user to enter the hash value for titan-edge binding
 read -p "Enter the hash value for titan-edge bind: " user_hash
 
+# Prompt the user to enter the disk capacity for titan-edge binding
+read -p "Enter the disk capacity for titan-edge bind(GB): " disc_capacity
+
 # Execute commands within the container using the user-provided hash value
 docker exec titan titan-edge bind --hash="$user_hash" https://api-test1.container1.titannet.io/api/v2/device/binding
-docker exec titan titan-edge config set --storage-size 15GB
+docker exec titan titan-edge config set --storage-size "${disc_capacity}GB"
 docker exec titan titan-edge daemon stop
 
 # Restart the container (if needed)
